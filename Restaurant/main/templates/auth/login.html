@@ -1,0 +1,40 @@
+<!-- login.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if messages %}{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>hi!</strong> {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}{% endif %}
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="login_form">
+          <h2 class="useful_text">Login</h2>
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <p>Forgot password? <a href="{% url "password_reset" %}">Reset password</a></p>
+            <button type="submit" class="custom-btn btn-1">Login</button>
+            <p>Not signed up yet? <a href="{% url 'register' %}">Sign up here</a></p>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
